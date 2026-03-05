@@ -6,11 +6,11 @@ SRC = $(wildcard $(SRC_DIR)/*/*.c)
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I$(SRC_DIR) -Iincludes -g -IMLX42/include -ILIBFT
+CFLAGS = -Wall -Wextra -Werror -I$(SRC_DIR) -Iinclude -g -Ilibraries/MLX42/include -Ilibraries/LIBFT
 
-LIB = LIBFT/libft.a
+LIB = libraries/LIBFT/libft.a
 
-MLX42_DIR = MLX42
+MLX42_DIR = libraries/MLX42
 MLX42_BUILD = $(MLX42_DIR)/build
 MLX42_LIB = $(MLX42_BUILD)/libmlx42.a
 MLX42_FLAGS = -L$(MLX42_BUILD) -lmlx42 -lm -lpthread -ldl -lglfw
@@ -31,23 +31,23 @@ $(MLX42_LIB):
 mlx: $(MLX42_LIB)
 
 $(NAME): $(OBJ)
-	@$(MAKE) -C LIBFT
+	@$(MAKE) -C libraries/LIBFT
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLX42_FLAGS) $(LIB)
 
 $(LIB):
-	@$(MAKE) -C LIBFT
+	@$(MAKE) -C libraries/LIBFT
 
 clean:
 	rm -rf $(OBJ_DIR)
-	@$(MAKE) -C LIBFT clean
+	@$(MAKE) -C libraries/LIBFT clean
 
 cleanmlx:
-	@rm -rf MLX42
-	@echo "MLX42 folder is deleted!"
+	@rm -rf libraries/MLX42
+	@echo "libraries/MLX42 folder is deleted!"
 
 fclean: clean
 	rm -f $(NAME)
-	@$(MAKE) -C LIBFT fclean
+	@$(MAKE) -C libraries/LIBFT fclean
 
 re: fclean all
 
