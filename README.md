@@ -1,3 +1,5 @@
+*Comment: This project's structure can appear messy because it is guided by the strict formatting rules of 42 Norminette*
+
 *This project has been created as part of the 42 curriculum by aokhapki and bszikora.*
 
 # cub3D
